@@ -19,7 +19,7 @@ namespace GLGraphics
                 case GLObjectType.Buffer:
                     GL.CreateBuffers(1, out handle);
                     break;
-                case GLObjectType.NamedFrameBuffer:
+                case GLObjectType.FrameBuffer:
                     GL.CreateFramebuffers(1, out handle);
                     break;
                 case GLObjectType.Program:

@@ -10,7 +10,7 @@ namespace GLGraphics
 {
     public class FrameBuffer : GraphicsResource
     {
-        public FrameBuffer() : base(GLObjectType.NamedFrameBuffer)
+        public FrameBuffer() : base(GLObjectType.FrameBuffer)
         {
         }
 

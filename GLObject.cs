@@ -1,7 +1,8 @@
 ﻿using GLGraphics.Helpers;
 using System;
-using System.Collections.Generic;
+using OpenTK.Graphics.OpenGL4;
 using System.Text;
+using System.Diagnostics;
 
 namespace GLGraphics
 {
@@ -30,6 +31,41 @@ namespace GLGraphics
                     GLObjectCleaner.ObjectsToBeCleaned.Add((GLObjectType, Handle));
                 }
                 disposed = true;
+            }
+        }
+
+        [Conditional("DEBUG")]
+        public void SetLabel(string label)
+        {
+            switch (GLObjectType)
+            {
+                case GLObjectType.VertexArray:
+                    GL.ObjectLabel(ObjectLabelIdentifier.VertexArray, Handle, label.Length, label);
+                    break;
+                case GLObjectType.Program:
+                    GL.ObjectLabel(ObjectLabelIdentifier.Program, Handle, label.Length, label);
+                    break;
+                case GLObjectType.FrameBuffer:
+                    GL.ObjectLabel(ObjectLabelIdentifier.Framebuffer, Handle, label.Length, label);
+                    break;
+                case GLObjectType.Sampler:
+                    GL.ObjectLabel(ObjectLabelIdentifier.Sampler, Handle, label.Length, label);
+                    break;
+                case GLObjectType.ProgramPipeline:
+                    GL.ObjectLabel(ObjectLabelIdentifier.ProgramPipeline, Handle, label.Length, label);
+                    break;
+                case GLObjectType.Buffer:
+                    GL.ObjectLabel(ObjectLabelIdentifier.Buffer, Handle, label.Length, label);
+                    break;
+                case GLObjectType.Shader:
+                    GL.ObjectLabel(ObjectLabelIdentifier.Shader, Handle, label.Length, label);
+                    break;
+                case GLObjectType.Texture:
+                    GL.ObjectLabel(ObjectLabelIdentifier.Texture, Handle, label.Length, label);
+                    break;
+                case GLObjectType.RenderBuffer:
+                    GL.ObjectLabel(ObjectLabelIdentifier.Renderbuffer, Handle, label.Length, label);
+                    break;
             }
         }
 

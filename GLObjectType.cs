@@ -8,13 +8,12 @@ namespace GLGraphics
     {
         VertexArray,
         Program,
-        NamedFrameBuffer,
         Sampler,
         ProgramPipeline,
         Buffer,
         Shader,
         Texture,
         RenderBuffer,
-        FrameBuffer
+        FrameBuffer,
     }
 }
