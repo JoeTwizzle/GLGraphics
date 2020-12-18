@@ -26,6 +26,7 @@ namespace GLGraphics
                 throw new Exception("The texture has already been initialized or is immutable.");
             }
             IsInitialized = true;
+            IsLayered = true;
             TextureFormat = internalFormat;
             Width = width;
             Height = height;

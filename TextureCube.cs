@@ -19,6 +19,7 @@ namespace GLGraphics
     {
         public int FaceWidth { get; private set; }
         public int FaceHeight { get; private set; }
+        public int FaceCount => 6;
 
         public TextureCube() : base(TextureTarget.TextureCubeMap)
         {
@@ -33,6 +34,7 @@ namespace GLGraphics
             }
             TextureFormat = textureFormat;
             Levels = levels;
+            IsLayered = true;
             IsInitialized = true;
             FaceWidth = w;
             FaceHeight = h;
@@ -42,7 +44,7 @@ namespace GLGraphics
 
         public void SetFaces<T>(T[][] data, PixelFormat pixelFormat, PixelType pixelType) where T : unmanaged
         {
-            if (data.Length != 6)
+            if (data.Length != FaceCount)
             {
                 throw new Exception("Bitmaps must be an array of length 6.");
             }

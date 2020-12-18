@@ -26,7 +26,7 @@ This library uses 100% DSA(Direct State Access) OpenGL, it also exposes some opt
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenTK" Version="4.3.0" />
+    <PackageReference Include="OpenTK" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using GLGraphics.Helpers;
 using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 using System;
 
 namespace GLGraphics
@@ -144,6 +145,18 @@ namespace GLGraphics
                 throw new Exception("This texture is not bindless.");
             }
             GL.Arb.MakeTextureHandleNonResident(BindlessHandle);
+        }
+
+        public void CopyImageSubData(int srcLvl, Box3i scrBounds, TextureBase dest, int destLvl, Vector3i destOffset)
+        {
+            CopyImageSubData(this, srcLvl, scrBounds, dest, destLvl, destOffset);
+        }
+
+        public static void CopyImageSubData(TextureBase scr, int srcLvl, Box3i scrBounds, TextureBase dest, int destLvl, Vector3i destOffset)
+        {
+            GL.CopyImageSubData(scr.Handle, (ImageTarget)scr.TextureTarget, srcLvl, scrBounds.Min.X, scrBounds.Min.Y, scrBounds.Min.Z,
+                                dest.Handle, (ImageTarget)dest.TextureTarget, destLvl, destOffset.X, destOffset.Y, destOffset.Z,
+                                scrBounds.Max.X, scrBounds.Max.Y, scrBounds.Max.Z);
         }
 
         public void GenMipmaps()
