@@ -58,5 +58,10 @@ namespace GLGraphics
         {
             GL.TextureSubImage3D(Handle, 0, 0, 0, (int)face, FaceWidth, FaceHeight, 1, pixelFormat, pixelType, data);
         }
+
+        public void SetFace(CubemapFace face, IntPtr data, PixelFormat pixelFormat, PixelType pixelType)
+        {
+            GL.TextureSubImage3D(Handle, 0, 0, 0, (int)face, FaceWidth, FaceHeight, 1, pixelFormat, pixelType, data);
+        }
     }
 }

@@ -25,10 +25,10 @@ namespace GLGraphics
             IsInitialized = true;
             Width = w;
             Height = h;
-            PixelCount = w * h;
+            PixelCount = w * h; 
             GL.TextureStorage2D(Handle, levels, (SizedInternalFormat)textureFormat, w, h);
         }
-
+        
         public void SetImage<T>(T[] data, int xOffset, int yOffset, int w, int h, PixelFormat pixelFormat, PixelType pixelType, int level = 0) where T : unmanaged
         {
             if (!IsInitialized)
@@ -39,6 +39,16 @@ namespace GLGraphics
             if (data is null)
             {
                 throw new ArgumentNullException(nameof(data));
+            }
+
+            GL.TextureSubImage2D(Handle, level, xOffset, yOffset, w, h, pixelFormat, pixelType, data);
+        }
+
+        public void SetImage(IntPtr data, int xOffset, int yOffset, int w, int h, PixelFormat pixelFormat, PixelType pixelType, int level = 0)
+        {
+            if (!IsInitialized)
+            {
+                throw new Exception("The texture has not been initialized.");
             }
 
             GL.TextureSubImage2D(Handle, level, xOffset, yOffset, w, h, pixelFormat, pixelType, data);

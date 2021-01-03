@@ -96,6 +96,42 @@ namespace GLGraphics
         Rg32ui = 33340,
         //
         // Summary:
+        //     Original was GL_RGB8 = 0x8051
+        Rgb8 = 32849,
+        //
+        // Summary:
+        //     Original was GL_RGB8I = 0x8D8F
+        Rgb8i = 36239,
+        //
+        // Summary:
+        //     Original was GL_RGB8UI = 0x8D7D
+        Rgb8ui = 36221,
+        //
+        // Summary:
+        //     Original was GL_RGB16 = 0x8054
+        Rgb16 = 32852,
+        //
+        // Summary:
+        //     Original was GL_RGB16I = 0x8D89
+        Rgb16i = 36233,
+        //
+        // Summary:
+        //     Original was GL_RGB16UI = 0x8D77
+        Rgb16ui = 36215,
+        //
+        // Summary:
+        //     Original was GL_RGB32I = 0x8D83
+        Rgb32i = 36227,
+        //
+        // Summary:
+        //     Original was GL_RGB32UI = 0x8D71
+        Rgb32ui = 36209,
+        //
+        // Summary:
+        //     Original was GL_RGB32F = 0x8815
+        Rgb32f = 34837,
+        //
+        // Summary:
         //     Original was GL_RGBA32F = 0x8814
         Rgba32f = 34836,
         //

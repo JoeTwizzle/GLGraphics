@@ -8,7 +8,7 @@ namespace GLGraphics
     public abstract class TextureBase : GLObject
     {
         public bool IsBindless { get; private set; } = false;
-        public long BindlessHandle;
+        public ulong BindlessHandle = 0;
 
         public TextureBase(TextureTarget TextureTarget) : base(GLObjectType.Texture)
         {
@@ -115,7 +115,7 @@ namespace GLGraphics
                 throw new Exception("This texture is already bindless.");
             }
             IsBindless = true;
-            BindlessHandle = GL.Arb.GetTextureHandle(Handle);
+            BindlessHandle = (ulong)GL.Arb.GetTextureHandle(Handle);
         }
 
         public void MakeNonBindless()
@@ -145,6 +145,24 @@ namespace GLGraphics
                 throw new Exception("This texture is not bindless.");
             }
             GL.Arb.MakeTextureHandleNonResident(BindlessHandle);
+        }
+
+        public void MakeImageResident(TextureAccess access)
+        {
+            if (!IsBindless)
+            {
+                throw new Exception("This texture is not bindless.");
+            }
+            GL.Arb.MakeImageHandleResident(BindlessHandle, (All)access);
+        }
+
+        public void MakeImageNonResident()
+        {
+            if (!IsBindless)
+            {
+                throw new Exception("This texture is not bindless.");
+            }
+            GL.Arb.MakeImageHandleNonResident(BindlessHandle);
         }
 
         public void CopyImageSubData(int srcLvl, Box3i scrBounds, TextureBase dest, int destLvl, Vector3i destOffset)

@@ -85,6 +85,56 @@ namespace GLGraphics
             GL.NamedBufferStorage(Handle, Size, IntPtr.Zero, bufferStorageFlags);
         }
 
+        public void Init(BufferType buffertype,int dataSize, int elementCount, BufferStorageFlags bufferStorageFlags = BufferStorageFlags.DynamicStorageBit)
+        {
+            if (Initialized)
+            {
+                throw new InvalidOperationException("Buffer has already been initialized");
+            }
+            Initialized = true;
+            BufferElementType = typeof(byte[]);
+            Buffertype = buffertype;
+            DataSize = dataSize;
+            ElementCount = elementCount;
+            Size = DataSize * elementCount;
+            GL.NamedBufferStorage(Handle, Size, IntPtr.Zero, bufferStorageFlags);
+        }
+
+        public void Init(BufferType buffertype, int dataSize, byte[] data, BufferStorageFlags bufferStorageFlags = BufferStorageFlags.DynamicStorageBit)
+        {
+            if (Initialized)
+            {
+                throw new InvalidOperationException("Buffer has already been initialized");
+            }
+            Initialized = true;
+            BufferElementType = typeof(byte[]);
+            Buffertype = buffertype;
+            DataSize = dataSize;
+            ElementCount = data.Length / dataSize;
+            Size = DataSize * ElementCount;
+            GL.NamedBufferStorage(Handle, Size, IntPtr.Zero, bufferStorageFlags);
+        }
+
+        public void Init(BufferType buffertype, int dataSize, int elementCount, byte[] data, BufferStorageFlags bufferStorageFlags = BufferStorageFlags.DynamicStorageBit)
+        {
+            if (Initialized)
+            {
+                throw new InvalidOperationException("Buffer has already been initialized");
+            }
+
+            Initialized = true;
+            BufferElementType = typeof(byte[]);
+            Buffertype = buffertype;
+            DataSize = dataSize;
+            ElementCount = elementCount;
+            Size = DataSize * elementCount;
+            if (elementCount < data.Length/ dataSize)
+            {
+                throw new Exception("elementCount can't be less than the amount of elements contained in data");
+            }
+            GL.NamedBufferStorage(Handle, DataSize * elementCount, data, bufferStorageFlags);
+        }
+
         /*public void InitDynamic<T>(BufferType buffertype, T[] data, BufferUsageHint bufferUsageHint = BufferUsageHint.StaticDraw) where T : unmanaged
         {
             if (Initialized)
@@ -131,17 +181,17 @@ namespace GLGraphics
             return GL.UnmapNamedBuffer(Handle);
         }
 
-        public void UpdateData<T>(T data, int offset = 0) where T : struct
+        public void UpdateData<T>(T data, int offset = 0) where T : unmanaged
         {
             GL.NamedBufferSubData(Handle, (IntPtr)offset, DataSize, ref data);
         }
 
-        public void UpdateData<T>(T[] data, int offset = 0) where T : struct
+        public void UpdateData<T>(T[] data, int offset = 0) where T : unmanaged
         {
             GL.NamedBufferSubData(Handle, (IntPtr)offset, data.Length * DataSize, data);
         }
 
-        public void UpdateData<T>(int length, T[] data, int offset = 0) where T : struct
+        public void UpdateData<T>(int length, T[] data, int offset = 0) where T : unmanaged
         {
             GL.NamedBufferSubData(Handle, (IntPtr)offset, length * DataSize, data);
         }

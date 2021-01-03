@@ -55,7 +55,7 @@ namespace GLGraphics.Helpers
                 bindingData[i] = attribData;
             }
             var size = Marshal.SizeOf(type);
-           
+
             for (int i = 0; i < fields.Length; i++)
             {
                 bindingData[i].Size = size;
@@ -105,7 +105,7 @@ namespace GLGraphics.Helpers
             {
                 return 1;
             }
-            if (fieldType == typeof(Half))
+            if (fieldType == typeof(OpenTK.Mathematics.Half))
             {
                 return 1;
             }
@@ -138,7 +138,7 @@ namespace GLGraphics.Helpers
             {
                 return VertexAttribType.UnsignedInt;
             }
-            if (fieldType == typeof(Half))
+            if (fieldType == typeof(OpenTK.Mathematics.Half))
             {
                 return VertexAttribType.HalfFloat;
             }

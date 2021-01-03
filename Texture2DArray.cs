@@ -49,5 +49,15 @@ namespace GLGraphics
 
             GL.TexSubImage3D(TextureTarget, level, 0, xOffset, yOffset, width, height, depth, pixelFormat, pixelType, data);
         }
+
+        public void SetImage(IntPtr data, int xOffset, int yOffset, int width, int height, PixelFormat pixelFormat, PixelType pixelType, int depth, int level = 0)
+        {
+            if (!IsInitialized)
+            {
+                throw new Exception("The texture has not been initialized.");
+            }
+
+            GL.TexSubImage3D(TextureTarget, level, 0, xOffset, yOffset, width, height, depth, pixelFormat, pixelType, data);
+        }
     }
 }

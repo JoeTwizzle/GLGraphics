@@ -8,10 +8,10 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageIcon>GLGraphics Logo.png</PackageIcon>
-    <PackageTags>opengl opentk graphics rendering C# .NET DSA DirectStateAccess</PackageTags>
+    <PackageTags>OZDO opengl opentk graphics rendering C# .NET DSA DirectStateAccess</PackageTags>
     <PackageLicenseExpression></PackageLicenseExpression>
     <RepositoryUrl>https://github.com/JoeTwizzle/GLGraphics</RepositoryUrl>
-    <Version>1.0.2</Version>
+    <Version>1.0.4</Version>
     <Description>A small library designed to be an object oriented wrapper around the OpenGL API.
 This library uses 100% DSA(Direct State Access) OpenGL, it also exposes some optional extentions such as bindless textures, make sure your GPU can support DSA.</Description>
     <Authors>Joe Twizzle</Authors>
