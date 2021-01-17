@@ -8,6 +8,7 @@ namespace GLGraphics
 {
     public abstract class GLObject : IDisposable
     {
+        
 
         protected GLObject(GLObjectType ObjectType)
         {
@@ -73,6 +74,18 @@ namespace GLGraphics
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is GLObject @object &&
+                   GLObjectType == @object.GLObjectType &&
+                   Handle == @object.Handle;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(GLObjectType, Handle);
         }
 
         ~GLObject()
