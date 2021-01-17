@@ -35,7 +35,6 @@ namespace GLGraphics
             }
         }
 
-        [Conditional("DEBUG")]
         public void SetLabel(string label)
         {
             switch (GLObjectType)

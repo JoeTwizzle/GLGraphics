@@ -30,7 +30,7 @@ namespace GLGraphics.Helpers
         public static void Clean((GLObjectType, int) objectToBeCleaned)
         {
             int Handle = objectToBeCleaned.Item2;
-            //Console.WriteLine("Cleaned GLObject of type: " + Enum.GetName(typeof(GLObjectType), objectToBeCleaned.Item1) + " with ID: " + objectToBeCleaned.Item2);
+            Console.WriteLine("Cleaned GLObject of type: " + Enum.GetName(typeof(GLObjectType), objectToBeCleaned.Item1) + " with ID: " + objectToBeCleaned.Item2);
             switch (objectToBeCleaned.Item1)
             {
                 case GLObjectType.VertexArray:
