@@ -8,7 +8,7 @@ namespace GLGraphics
 {
     public abstract class GLObject : IDisposable
     {
-        
+
 
         protected GLObject(GLObjectType ObjectType)
         {
