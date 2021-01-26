@@ -52,7 +52,11 @@ namespace GLGraphics
         public void AutoSetUniform<T>(int location, T value)
         {
             int program = Handle;
-            if (value is int i)
+            if (value is bool b)
+            {
+                SetUniform1(program, location, b ? 1 : 0);
+            }
+            else if (value is int i)
             {
                 SetUniform1(program, location, i);
             }

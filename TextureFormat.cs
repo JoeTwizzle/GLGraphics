@@ -120,6 +120,10 @@ namespace GLGraphics
         Rgb16ui = 36215,
         //
         // Summary:
+        //     Original was GL_RGB16F = 0x881B
+        Rgb16f = 34843,
+        //
+        // Summary:
         //     Original was GL_RGB32I = 0x8D83
         Rgb32i = 36227,
         //
@@ -162,9 +166,6 @@ namespace GLGraphics
         // Summary:
         //     Original was GL_RGBA8I = 0x8D8E
         Rgba8i = 36238,
-
-        //-----------------------------------------------------------// New stuff
-
         //
         // Summary:
         //     Original was GL_DEPTH_COMPONENT16 = 0x81A5
