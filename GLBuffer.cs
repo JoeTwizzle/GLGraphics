@@ -85,7 +85,7 @@ namespace GLGraphics
             GL.NamedBufferStorage(Handle, Size, IntPtr.Zero, bufferStorageFlags);
         }
 
-        public void Init(BufferType buffertype,int dataSize, int elementCount, BufferStorageFlags bufferStorageFlags = BufferStorageFlags.DynamicStorageBit)
+        public void Init(BufferType buffertype, int dataSize, int elementCount, BufferStorageFlags bufferStorageFlags = BufferStorageFlags.DynamicStorageBit)
         {
             if (Initialized)
             {
@@ -128,7 +128,7 @@ namespace GLGraphics
             DataSize = dataSize;
             ElementCount = elementCount;
             Size = DataSize * elementCount;
-            if (elementCount < data.Length/ dataSize)
+            if (elementCount < data.Length / dataSize)
             {
                 throw new Exception("elementCount can't be less than the amount of elements contained in data");
             }
@@ -201,7 +201,7 @@ namespace GLGraphics
             GL.BindBuffer((BufferTarget)Buffertype, Handle);
         }
 
-        public void BindStorage(int index = 0)
+        public void BindBase(int index = 0)
         {
             GL.BindBufferBase((BufferRangeTarget)Buffertype, index, Handle);
         }
