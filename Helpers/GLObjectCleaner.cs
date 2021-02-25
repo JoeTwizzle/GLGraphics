@@ -1,12 +1,14 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace GLGraphics.Helpers
 {
     public static class GLObjectCleaner
     {
+        public static TextWriter DebugWriter = Console.Out;
         public static List<(GLObjectType, int)> ObjectsToBeCleaned = new List<(GLObjectType, int)>();
         public static float SecondsPerClean = 1;
         static float timeSinceLastClean = 0;
@@ -30,7 +32,7 @@ namespace GLGraphics.Helpers
         public static void Clean((GLObjectType, int) objectToBeCleaned)
         {
             int Handle = objectToBeCleaned.Item2;
-            Console.WriteLine("Cleaned GLObject of type: " + Enum.GetName(typeof(GLObjectType), objectToBeCleaned.Item1) + " with ID: " + objectToBeCleaned.Item2);
+            DebugWriter?.WriteLine("Cleaned GLObject of type: " + Enum.GetName(typeof(GLObjectType), objectToBeCleaned.Item1) + " with ID: " + objectToBeCleaned.Item2);
             switch (objectToBeCleaned.Item1)
             {
                 case GLObjectType.VertexArray:

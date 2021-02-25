@@ -8,8 +8,6 @@ namespace GLGraphics
 {
     public abstract class GLObject : IDisposable
     {
-
-
         protected GLObject(GLObjectType ObjectType)
         {
             GLObjectType = ObjectType;
@@ -29,6 +27,7 @@ namespace GLGraphics
                 }
                 else
                 {
+                    //Delegate cleanup to the object cleaner in order to avoid threading issues
                     GLObjectCleaner.ObjectsToBeCleaned.Add((GLObjectType, Handle));
                 }
                 disposed = true;

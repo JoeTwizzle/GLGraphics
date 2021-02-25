@@ -31,7 +31,6 @@ namespace GLGraphics
             GL.GetProgram(Handle, GetProgramParameterName.LinkStatus, out int code);
             if (code != (int)All.True)
             {
-
                 throw new Exception("Error occurred whilst linking Program(" + Handle + ") \n\r" + GL.GetProgramInfoLog(Handle));
             }
         }
