@@ -40,7 +40,7 @@ namespace GLGraphics
             GL.VertexArrayElementBuffer(Handle, buffer.Handle);
         }
 
-        public void SetVertexBuffer(GLBuffer buffer)
+        public void SetVertexBuffer(GLBuffer buffer, int bindingIndex = 0)
         {
             if (buffer.Buffertype != BufferType.ArrayBuffer)
             {
@@ -49,34 +49,34 @@ namespace GLGraphics
             if (data == null)
             {
                 throw new Exception("Layout must be set before setting the vertex buffer.");
-            } 
-            GL.VertexArrayVertexBuffer(Handle, 0, buffer.Handle, IntPtr.Zero, data[0].Size);
+            }
+            GL.VertexArrayVertexBuffer(Handle, bindingIndex, buffer.Handle, IntPtr.Zero, data[0].Size);
         }
 
-        public void SetLayout(Type type, bool normalized = false, int divisor = 0)
+        public void AutoSetLayout(Type type)
         {
             data = AttributeHelper.GetAttributeBindingData(type);
 
             for (int i = 0; i < data.Length; i++)
             {
                 GL.EnableVertexArrayAttrib(Handle, data[i].Index);
-                GL.VertexArrayAttribFormat(Handle, data[i].Index, data[i].Elements, data[i].Type, normalized, (int)data[i].Offset);
+                GL.VertexArrayAttribFormat(Handle, data[i].Index, data[i].Elements, data[i].Type, false, (int)data[i].Offset);
                 GL.VertexArrayAttribBinding(Handle, data[i].Index, 0);
-                GL.VertexArrayBindingDivisor(Handle, 0, divisor);
+                GL.VertexArrayBindingDivisor(Handle, 0, 0);
             }
         }
 
-        public void SetLayout<T>(bool normalized = false, int divisor = 0) where T : struct
+        public void SetIndex(int index, int elements, VertexAttribType vertexAttribType, int offset, int bindingIndex = 0, int divisor = 0, bool normalized = false)
         {
-            data = AttributeHelper.GetAttributeBindingData<T>();
+            GL.EnableVertexArrayAttrib(Handle, index);
+            GL.VertexArrayAttribFormat(Handle, index, elements, vertexAttribType, normalized, (int)offset);
+            GL.VertexArrayAttribBinding(Handle, index, bindingIndex);
+            GL.VertexArrayBindingDivisor(Handle, bindingIndex, divisor);
+        }
 
-            for (int i = 0; i < data.Length; i++)
-            {
-                GL.EnableVertexArrayAttrib(Handle, data[i].Index);
-                GL.VertexArrayAttribFormat(Handle, data[i].Index, data[i].Elements, data[i].Type, normalized, (int)data[i].Offset);
-                GL.VertexArrayAttribBinding(Handle, data[i].Index, 0);
-                GL.VertexArrayBindingDivisor(Handle, 0, divisor);
-            }
+        public void AutoSetLayout<T>() where T : struct
+        {
+            AutoSetLayout(typeof(T));
         }
 
         public void Bind()

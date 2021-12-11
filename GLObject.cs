@@ -8,6 +8,7 @@ namespace GLGraphics
 {
     public abstract class GLObject : IDisposable
     {
+        public static bool SuppressGC = false;
         protected GLObject(GLObjectType ObjectType)
         {
             GLObjectType = ObjectType;
@@ -88,7 +89,10 @@ namespace GLGraphics
 
         ~GLObject()
         {
-            Dispose(false);
+            if (!SuppressGC)
+            {
+                Dispose(false);
+            }
         }
     }
 }

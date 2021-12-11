@@ -147,5 +147,15 @@ namespace GLGraphics
         {
             GL.SamplerParameter(Handle, param, value);
         }
+
+        public long GetTextureSamplerHandle(TextureBase texture)
+        {
+            return GL.Arb.GetTextureSamplerHandle(texture.Handle, Handle);
+        }
+
+        public long GetTextureSamplerHandle(int texture)
+        {
+            return GL.Arb.GetTextureSamplerHandle(texture, Handle);
+        }
     }
 }

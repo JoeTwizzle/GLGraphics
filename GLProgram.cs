@@ -101,19 +101,19 @@ namespace GLGraphics
             }
         }
 
-        public void SetUniformMat4(int location, Matrix4 mat4)
+        public void SetUniformMat4(int location, Matrix4 mat4, bool rowMajor = true)
         {
-            GL.ProgramUniformMatrix4(Handle, location, false, ref mat4);
+            GL.ProgramUniformMatrix4(Handle, location, rowMajor, ref mat4);
         }
 
-        public void SetUniformMat3(int location, Matrix3 mat3)
+        public void SetUniformMat3(int location, Matrix3 mat3, bool rowMajor = true)
         {
-            GL.ProgramUniformMatrix3(Handle, location, false, ref mat3);
+            GL.ProgramUniformMatrix3(Handle, location, rowMajor, ref mat3);
         }
 
-        public void SetUniformMat2(int location, Matrix2 mat2)
+        public void SetUniformMat2(int location, Matrix2 mat2, bool rowMajor = true)
         {
-            GL.ProgramUniformMatrix2(Handle, location, false, ref mat2);
+            GL.ProgramUniformMatrix2(Handle, location, rowMajor, ref mat2);
         }
 
         public void SetUniform4(int location, Color4 val)
