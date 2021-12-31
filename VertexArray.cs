@@ -29,7 +29,7 @@ namespace GLGraphics
         //    //set the divisor
         //    GL.VertexAttribDivisor(index, divisor);
         //}
-        AttributeBindingData[]? data;
+        int stride;
 
         public void SetIndexBuffer(GLBuffer buffer)
         {
@@ -40,22 +40,20 @@ namespace GLGraphics
             GL.VertexArrayElementBuffer(Handle, buffer.Handle);
         }
 
-        public void SetVertexBuffer(GLBuffer buffer, int bindingIndex = 0)
+        public void SetVertexBuffer(GLBuffer buffer, int bindingIndex = 0, int offset = 0)
         {
             if (buffer.Buffertype != BufferType.ArrayBuffer)
             {
                 throw new Exception("Buffertype \"" + buffer.Buffertype + "\" is not of type ArrayBuffer.");
             }
-            if (data == null)
-            {
-                throw new Exception("Layout must be set before setting the vertex buffer.");
-            }
-            GL.VertexArrayVertexBuffer(Handle, bindingIndex, buffer.Handle, IntPtr.Zero, data[0].Size);
+
+            GL.VertexArrayVertexBuffer(Handle, bindingIndex, buffer.Handle, (IntPtr)offset, stride);
         }
 
         public void AutoSetLayout(Type type)
         {
-            data = AttributeHelper.GetAttributeBindingData(type);
+
+            AttributeBindingData[] data = AttributeHelper.GetAttributeBindingData(type);
 
             for (int i = 0; i < data.Length; i++)
             {
@@ -64,6 +62,7 @@ namespace GLGraphics
                 GL.VertexArrayAttribBinding(Handle, data[i].Index, 0);
                 GL.VertexArrayBindingDivisor(Handle, 0, 0);
             }
+            stride = Marshal.SizeOf(type);
         }
 
         public void SetIndex(int index, int elements, VertexAttribType vertexAttribType, int offset, int bindingIndex = 0, int divisor = 0, bool normalized = false)
@@ -74,9 +73,15 @@ namespace GLGraphics
             GL.VertexArrayBindingDivisor(Handle, bindingIndex, divisor);
         }
 
+        public void SetStride(int stride)
+        {
+            this.stride = stride;
+        }
+
         public void AutoSetLayout<T>() where T : struct
         {
             AutoSetLayout(typeof(T));
+            stride = Unsafe.SizeOf<T>();
         }
 
         public void Bind()

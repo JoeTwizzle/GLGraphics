@@ -11,7 +11,7 @@
     <PackageTags>AZDO opengl opentk graphics rendering C# .NET DSA DirectStateAccess</PackageTags>
     <PackageLicenseExpression></PackageLicenseExpression>
     <RepositoryUrl>https://github.com/JoeTwizzle/GLGraphics</RepositoryUrl>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <Description>A small library designed to be an object oriented wrapper around the OpenGL API.
 This library uses 100% DSA(Direct State Access) OpenGL, it also exposes some optional extentions such as bindless textures, make sure your GPU can support DSA (OpenGL 4.5 or higher).</Description>
     <Authors>Joe Twizzle</Authors>
